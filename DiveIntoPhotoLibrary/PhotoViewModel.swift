@@ -17,10 +17,10 @@ class PhotoViewModel: ObservableObject {
   
   @Published var resourceString: String = ""
   
-  lazy var assets: [PHAsset] = {
+  var assets: [PHAsset] {
     let assets: [PHAsset] = PhotoManager.allUserLibraryAssets(imagesOnly: false)
     return assets
-  }()
+  }
   
   func request() {
     PhotoManager.requestAuthorization {
@@ -29,7 +29,9 @@ class PhotoViewModel: ObservableObject {
   }
   
   func onAppear() {
-    checkResource()
+    checkAssetsInfo(
+      targetSize: .init(width: 20, height: 20)
+    )
   }
   
   func checkAssetsInfo(targetSize: CGSize) {
@@ -59,12 +61,20 @@ class PhotoViewModel: ObservableObject {
         }
       }
     }
-    let countString = "\(result.filter(\.hasImage).count) : \(result.filter(\.isInCloud).count)"
-    self.countString = countString
-    print("for end", countString)
-    print("for end", result.count)
     
-    print("time", CFAbsoluteTimeGetCurrent() - start)
+    print("for end", #function)
+    print("for end result count", result.count)
+    
+    print("for end size", targetSize)
+    
+    let ratioString = "size: \(targetSize)\nhasImage: \(result.filter(\.hasImage).count) : inCloud: \(result.filter(\.isInCloud).count)"
+    self.countString = ratioString
+    
+    print("for end ratioString", ratioString)
+    
+    let span = CFAbsoluteTimeGetCurrent() - start
+    print("time", span)
+    print("average time", span / Double(result.count))
   }
   
   func checkResource() {
@@ -78,24 +88,35 @@ class PhotoViewModel: ObservableObject {
       for item in resources {
         let locallyAvailable = (item.value(forKey: "locallyAvailable") as? Bool) ?? false
         let inCloud = (item.value(forKey: "inCloud") as? Bool) ?? false
-        result.append(.init(locallyAvailable: locallyAvailable, inCloud: inCloud))
+        let fileSize = (item.value(forKey: "fileSize") as? Int64) ?? 0
+        let cplResourceType = (item.value(forKey: "cplResourceType") as? Int) ?? 0
+        
+        result.append(.init(locallyAvailable: locallyAvailable, inCloud: inCloud, cplResourceType: cplResourceType))
         print(
           item.uniformTypeIdentifier,
           item.type.rawValue,
           item.originalFilename,
           locallyAvailable,
-          inCloud
+          inCloud,
+          fileSize / 1_000,
+          cplResourceType
         )
         
         break
       }
     }
-    let countString = "\(result.filter(\.locallyAvailable).count) : \(result.filter(\.inCloud).count)"
-    self.resourceString = countString
-    print("for end", countString)
-    print("for end", result.count)
     
-    print("time", CFAbsoluteTimeGetCurrent() - start)
+    print("for end", #function)
+    print("for end result count", result.count)
+    
+    let ratioString = "local: \(result.filter(\.locallyAvailable).count) : inCloud: \(result.filter(\.inCloud).count)"
+    self.resourceString = ratioString
+    
+    print("for end ratioString", ratioString)
+    
+    let span = CFAbsoluteTimeGetCurrent() - start
+    print("time", span)
+    print("average time", span / Double(result.count))
   }
   
   func deleteAll() {
@@ -114,4 +135,5 @@ struct AssetInfo {
 struct ResourceInfo {
   var locallyAvailable: Bool
   var inCloud: Bool
+  var cplResourceType: Int
 }
