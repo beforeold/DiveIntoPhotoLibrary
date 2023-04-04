@@ -13,6 +13,8 @@ class PhotoViewModel: ObservableObject {
   
   @Published var isAuthed: Bool = false
   
+  @Published var isLoading: Bool = false
+  
   @Published var countString: String = ""
   
   @Published var resourceString: String = ""
@@ -35,6 +37,7 @@ class PhotoViewModel: ObservableObject {
   }
   
   func checkAssetsInfo(targetSize: CGSize) {
+    isLoading = true
     let start = CFAbsoluteTimeGetCurrent()
     
     countString = ""
@@ -54,7 +57,7 @@ class PhotoViewModel: ObservableObject {
       ) { image, asset, userInfo in
         let isInCloud = (userInfo?[PHImageResultIsInCloudKey] as? Bool) ?? false
         let hasImage = image != nil
-        let assetInfo = AssetInfo(isInCloud: isInCloud, hasImage: hasImage)
+        let assetInfo = AssetInfo(asset: asset, isInCloud: isInCloud, hasImage: hasImage)
         result.append(assetInfo)
         if image != nil {
           print("handled", index + 1, image?.size.width ?? 0, image?.size.height ?? 0)
@@ -67,7 +70,7 @@ class PhotoViewModel: ObservableObject {
     
     print("for end size", targetSize)
     
-    let ratioString = "size: \(targetSize)\nhasImage: \(result.filter(\.hasImage).count) : inCloud: \(result.filter(\.isInCloud).count)"
+    let ratioString = "count: \(result.count)\nsize: \(targetSize)\nhasImage: \(result.filter(\.hasImage).count), inCloud: \(result.filter(\.isInCloud).count)"
     self.countString = ratioString
     
     print("for end ratioString", ratioString)
@@ -75,9 +78,12 @@ class PhotoViewModel: ObservableObject {
     let span = CFAbsoluteTimeGetCurrent() - start
     print("time", span)
     print("average time", span / Double(result.count))
+    isLoading = false
   }
   
   func checkResource() {
+    isLoading = true
+    
     let start = CFAbsoluteTimeGetCurrent()
     
     var result: [ResourceInfo] = []
@@ -91,7 +97,7 @@ class PhotoViewModel: ObservableObject {
         let fileSize = (item.value(forKey: "fileSize") as? Int64) ?? 0
         let cplResourceType = (item.value(forKey: "cplResourceType") as? Int) ?? 0
         
-        result.append(.init(locallyAvailable: locallyAvailable, inCloud: inCloud, cplResourceType: cplResourceType))
+        result.append(.init(asset: asset, locallyAvailable: locallyAvailable, inCloud: inCloud, cplResourceType: cplResourceType))
         print(
           item.uniformTypeIdentifier,
           item.type.rawValue,
@@ -109,7 +115,7 @@ class PhotoViewModel: ObservableObject {
     print("for end", #function)
     print("for end result count", result.count)
     
-    let ratioString = "local: \(result.filter(\.locallyAvailable).count) : inCloud: \(result.filter(\.inCloud).count)"
+    let ratioString = "count: \(result.count)\nlocal: \(result.filter(\.locallyAvailable).count), inCloud: \(result.filter(\.inCloud).count)"
     self.resourceString = ratioString
     
     print("for end ratioString", ratioString)
@@ -117,6 +123,8 @@ class PhotoViewModel: ObservableObject {
     let span = CFAbsoluteTimeGetCurrent() - start
     print("time", span)
     print("average time", span / Double(result.count))
+    
+    isLoading = false
   }
   
   func deleteAll() {
@@ -128,11 +136,13 @@ class PhotoViewModel: ObservableObject {
 
 
 struct AssetInfo {
+  var asset: PHAsset
   var isInCloud: Bool
   var hasImage: Bool
 }
 
 struct ResourceInfo {
+  var asset: PHAsset
   var locallyAvailable: Bool
   var inCloud: Bool
   var cplResourceType: Int
