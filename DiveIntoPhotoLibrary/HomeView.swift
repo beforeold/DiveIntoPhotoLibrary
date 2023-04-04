@@ -18,6 +18,9 @@ struct HomeView: View {
   var content: some View {
     if viewModel.isAuthed {
       authedContent
+        .onAppear {
+          viewModel.checkAssetsInfo()
+        }
     } else {
       Text("Not authed")
     }
@@ -32,7 +35,7 @@ struct HomeView: View {
   }
   
   func makeScanAllButton() -> some View {
-    Button("Scan all") {
+    Button("Scan all \(viewModel.countString)") {
       viewModel.checkAssetsInfo()
     }
   }

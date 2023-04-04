@@ -47,7 +47,7 @@ class ImageFetcher {
 }
 
 
-fileprivate func defaultTargetSize() -> CGSize {
+func defaultTargetSize() -> CGSize {
   let column: CGFloat = 3
   let spacing: CGFloat = 1
   let scale: CGFloat = ImageFetcher.scale

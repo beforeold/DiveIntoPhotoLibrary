@@ -13,6 +13,8 @@ class PhotoViewModel: ObservableObject {
   
   @Published var isAuthed: Bool = false
   
+  @Published var countString: String = ""
+  
   func request() {
     PhotoManager.requestAuthorization {
       self.isAuthed = $0 == .authorized
@@ -25,6 +27,8 @@ class PhotoViewModel: ObservableObject {
   }
   
   func checkAssetsInfo() {
+    countString = ""
+    
     let fetcher = ImageFetcher()
     let assets: [PHAsset] = PhotoManager.allUserLibraryAssets(imagesOnly: false)
     var result: [AssetInfo] = []
@@ -36,19 +40,26 @@ class PhotoViewModel: ObservableObject {
       fetcher.requestImage(
         asset: asset,
 //         targetSize: .init(width: 20, height: 20),
-         targetSize: PHImageManagerMaximumSize,
-//         targetSize: .init(width: 224, height: 224),
+//        targetSize: .init(width: 80, height: 80),
+         targetSize: .init(width: 224, height: 224),
+//        targetSize: defaultTargetSize(),
+//         targetSize: PHImageManagerMaximumSize,
         isSynchronous: true
+//        isNetworkAccessAllowed: true
       ) { image, asset, userInfo in
         let isInCloud = (userInfo?[PHImageResultIsInCloudKey] as? Bool) ?? false
         let hasImage = image != nil
         let assetInfo = AssetInfo(isInCloud: isInCloud, hasImage: hasImage)
         result.append(assetInfo)
-        print("handled", index + 1, image?.size.width ?? 0, image?.size.height ?? 0)
+        if image != nil {
+          print("handled", index + 1, image?.size.width ?? 0, image?.size.height ?? 0)
+        }
       }
     }
-    print(result.filter(\.hasImage).count, ":", result.filter(\.isInCloud).count)
-    print(result.count)
+    let countString = "\(result.filter(\.hasImage).count) : \(result.filter(\.isInCloud).count)"
+    self.countString = countString
+    print("for end", countString)
+    print("for end", result.count)
   }
   
   func deleteAll() {
