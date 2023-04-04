@@ -34,7 +34,7 @@ struct HomeView: View {
       makeScanAllButton20()
       makeScanAllButton224()
       makeScanAllButtonDefault()
-      makeScanAllButton600()
+      makeScanAllButton1000()
       makeScanAllButtonFull()
       
       makeCheckResourceButton()
@@ -61,8 +61,8 @@ struct HomeView: View {
     }
   }
   
-  func makeScanAllButton600() -> some View {
-    Button("Scan all 600") {
+  func makeScanAllButton1000() -> some View {
+    Button("Scan all 1000") {
       viewModel.checkAssetsInfo(targetSize: .init(width: 1000, height: 1000))
     }
   }
