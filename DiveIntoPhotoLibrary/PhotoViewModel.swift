@@ -15,22 +15,29 @@ class PhotoViewModel: ObservableObject {
   
   @Published var countString: String = ""
   
+  @Published var resourceString: String = ""
+  
+  lazy var assets: [PHAsset] = {
+    let assets: [PHAsset] = PhotoManager.allUserLibraryAssets(imagesOnly: false)
+    return assets
+  }()
+  
   func request() {
     PhotoManager.requestAuthorization {
       self.isAuthed = $0 == .authorized
     }
   }
   
-  struct AssetInfo {
-    var isInCloud: Bool
-    var hasImage: Bool
+  func onAppear() {
+    checkResource()
   }
   
-  func checkAssetsInfo() {
+  func checkAssetsInfo(targetSize: CGSize) {
+    let start = CFAbsoluteTimeGetCurrent()
+    
     countString = ""
     
     let fetcher = ImageFetcher()
-    let assets: [PHAsset] = PhotoManager.allUserLibraryAssets(imagesOnly: false)
     var result: [AssetInfo] = []
     
     let enumerated = assets
@@ -39,11 +46,7 @@ class PhotoViewModel: ObservableObject {
     for (index, asset) in enumerated {
       fetcher.requestImage(
         asset: asset,
-//         targetSize: .init(width: 20, height: 20),
-//        targetSize: .init(width: 80, height: 80),
-         targetSize: .init(width: 224, height: 224),
-//        targetSize: defaultTargetSize(),
-//         targetSize: PHImageManagerMaximumSize,
+        targetSize: targetSize,
         isSynchronous: true
 //        isNetworkAccessAllowed: true
       ) { image, asset, userInfo in
@@ -60,12 +63,55 @@ class PhotoViewModel: ObservableObject {
     self.countString = countString
     print("for end", countString)
     print("for end", result.count)
+    
+    print("time", CFAbsoluteTimeGetCurrent() - start)
+  }
+  
+  func checkResource() {
+    let start = CFAbsoluteTimeGetCurrent()
+    
+    var result: [ResourceInfo] = []
+    for asset in assets {
+      let resources = PHAssetResource.assetResources(for: asset)
+      print("-------- resouce count: ", resources.count)
+      
+      for item in resources {
+        let locallyAvailable = (item.value(forKey: "locallyAvailable") as? Bool) ?? false
+        let inCloud = (item.value(forKey: "inCloud") as? Bool) ?? false
+        result.append(.init(locallyAvailable: locallyAvailable, inCloud: inCloud))
+        print(
+          item.uniformTypeIdentifier,
+          item.type.rawValue,
+          item.originalFilename,
+          locallyAvailable,
+          inCloud
+        )
+        
+        break
+      }
+    }
+    let countString = "\(result.filter(\.locallyAvailable).count) : \(result.filter(\.inCloud).count)"
+    self.resourceString = countString
+    print("for end", countString)
+    print("for end", result.count)
+    
+    print("time", CFAbsoluteTimeGetCurrent() - start)
   }
   
   func deleteAll() {
-    let assets: [PHAsset] = PhotoManager.allUserLibraryAssets(imagesOnly: false)
     PhotoManager.delete(assets) { (flag, error_) in
       print("delete result", flag)
     }
   }
+}
+
+
+struct AssetInfo {
+  var isInCloud: Bool
+  var hasImage: Bool
+}
+
+struct ResourceInfo {
+  var locallyAvailable: Bool
+  var inCloud: Bool
 }
