@@ -19,7 +19,10 @@ struct HomeView: View {
   var content: some View {
     if viewModel.isAuthed {
       if viewModel.isLoading {
-        ProgressView()
+        VStack {
+          ProgressView()
+          Text("loading")
+        }
       } else {
         authedContent
       }
