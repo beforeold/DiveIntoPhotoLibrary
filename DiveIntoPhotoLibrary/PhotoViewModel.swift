@@ -31,9 +31,7 @@ class PhotoViewModel: ObservableObject {
   }
   
   func onAppear() {
-    checkAssetsInfo(
-      targetSize: .init(width: 20, height: 20)
-    )
+
   }
   
   func checkAssetsInfo(targetSize: CGSize) {
