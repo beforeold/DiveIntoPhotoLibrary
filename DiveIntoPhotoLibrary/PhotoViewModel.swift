@@ -36,13 +36,24 @@ class PhotoViewModel: ObservableObject {
   
   func checkAssetsInfo(targetSize: CGSize) {
     isLoading = true
-    let start = CFAbsoluteTimeGetCurrent()
-    
     countString = ""
+
+    DispatchQueue.global().async {
+      let string = self._checkAssetsInfo(targetSize: targetSize)
+      DispatchQueue.main.async {
+        self.isLoading = false
+        self.countString = string
+      }
+    }
+  }
+  
+  private func _checkAssetsInfo(targetSize: CGSize) -> String {
+    let start = CFAbsoluteTimeGetCurrent()
     
     let fetcher = ImageFetcher()
     var result: [AssetInfo] = []
     
+    let assets = self.assets
     let enumerated = assets
       .enumerated()
       // .prefix(100)
@@ -68,20 +79,33 @@ class PhotoViewModel: ObservableObject {
     
     print("for end size", targetSize)
     
-    let ratioString = "count: \(result.count)\nsize: \(targetSize)\nhasImage: \(result.filter(\.hasImage).count), inCloud: \(result.filter(\.isInCloud).count)"
-    self.countString = ratioString
+    let ratioString = """
+result count: \(result.count)
+size: \(targetSize)
+hasImage: \(result.filter(\.hasImage).count), inCloud: \(result.filter(\.isInCloud).count)
+"""
     
     print("for end ratioString", ratioString)
     
     let span = CFAbsoluteTimeGetCurrent() - start
     print("time", span)
     print("average time", span / Double(result.count))
-    isLoading = false
+    
+    return ratioString
   }
   
   func checkResource() {
     isLoading = true
-    
+    DispatchQueue.global().async {
+      let string = self._checkResource()
+      DispatchQueue.main.async {
+        self.isLoading = false
+        self.resourceString = string
+      }
+    }
+  }
+  
+  private func _checkResource() -> String {
     let start = CFAbsoluteTimeGetCurrent()
     
     var result: [ResourceInfo] = []
@@ -114,7 +138,6 @@ class PhotoViewModel: ObservableObject {
     print("for end result count", result.count)
     
     let ratioString = "count: \(result.count)\nlocal: \(result.filter(\.locallyAvailable).count), inCloud: \(result.filter(\.inCloud).count)"
-    self.resourceString = ratioString
     
     print("for end ratioString", ratioString)
     
@@ -122,7 +145,7 @@ class PhotoViewModel: ObservableObject {
     print("time", span)
     print("average time", span / Double(result.count))
     
-    isLoading = false
+    return ratioString
   }
   
   func deleteAll() {

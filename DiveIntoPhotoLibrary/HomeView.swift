@@ -18,10 +18,11 @@ struct HomeView: View {
   @ViewBuilder
   var content: some View {
     if viewModel.isAuthed {
-      authedContent
-        .onAppear {
-          viewModel.onAppear()
-        }
+      if viewModel.isLoading {
+        ProgressView()
+      } else {
+        authedContent
+      }
     } else {
       Text("waiting")
     }
