@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  SecondDemoView.swift
 //  DiveIntoPhotoLibrary
 //
 //  Created by Brook_Mobius on 2023/4/3.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Photos
 
-struct HomeView: View {
+struct SecondDemoView: View {
   @StateObject var viewModel: PhotoViewModel = .shared
   
   var body: some View {
@@ -91,8 +91,8 @@ struct HomeView: View {
   }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct SecondDemoView_Previews: PreviewProvider {
   static var previews: some View {
-    HomeView()
+    SecondDemoView()
   }
 }

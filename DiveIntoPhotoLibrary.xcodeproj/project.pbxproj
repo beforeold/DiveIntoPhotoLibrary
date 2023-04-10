@@ -9,29 +9,44 @@
 /* Begin PBXBuildFile section */
 		845E144129DAD22500B5B9FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E144029DAD22500B5B9FE /* AppDelegate.swift */; };
 		845E144329DAD22500B5B9FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E144229DAD22500B5B9FE /* SceneDelegate.swift */; };
-		845E144529DAD22500B5B9FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E144429DAD22500B5B9FE /* ViewController.swift */; };
+		845E144529DAD22500B5B9FE /* SecondDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E144429DAD22500B5B9FE /* SecondDemoViewController.swift */; };
 		845E144829DAD22500B5B9FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E144629DAD22500B5B9FE /* Main.storyboard */; };
 		845E144A29DAD22800B5B9FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845E144929DAD22800B5B9FE /* Assets.xcassets */; };
 		845E144D29DAD22800B5B9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E144B29DAD22800B5B9FE /* LaunchScreen.storyboard */; };
 		845E145529DAD28500B5B9FE /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E145429DAD28500B5B9FE /* PhotoManager.swift */; };
-		845E145729DAD30000B5B9FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E145629DAD30000B5B9FE /* HomeView.swift */; };
+		845E145729DAD30000B5B9FE /* SecondDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E145629DAD30000B5B9FE /* SecondDemoView.swift */; };
 		845E145929DAD34B00B5B9FE /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E145829DAD34B00B5B9FE /* PhotoViewModel.swift */; };
 		845E145C29DAD68B00B5B9FE /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E145B29DAD68B00B5B9FE /* ImageFetcher.swift */; };
+		84ED6E6F29E3AE2000023A8C /* FirstDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED6E6829E3AE2000023A8C /* FirstDemoViewController.swift */; };
+		84ED6E7029E3AE2000023A8C /* PHPickerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED6E6929E3AE2000023A8C /* PHPickerDemo.swift */; };
+		84ED6E7129E3AE2000023A8C /* ALHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED6E6A29E3AE2000023A8C /* ALHelper.m */; };
+		84ED6E7229E3AE2000023A8C /* Uitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED6E6B29E3AE2000023A8C /* Uitls.swift */; };
+		84ED6E7329E3AE2000023A8C /* DiskHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED6E6D29E3AE2000023A8C /* DiskHelper.m */; };
+		84ED6E7429E3AE2000023A8C /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED6E6E29E3AE2000023A8C /* DeviceInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		845E143D29DAD22500B5B9FE /* DiveIntoPhotoLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveIntoPhotoLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		845E144029DAD22500B5B9FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845E144229DAD22500B5B9FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		845E144429DAD22500B5B9FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		845E144429DAD22500B5B9FE /* SecondDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDemoViewController.swift; sourceTree = "<group>"; };
 		845E144729DAD22500B5B9FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		845E144929DAD22800B5B9FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		845E144C29DAD22800B5B9FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		845E144E29DAD22800B5B9FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		845E145429DAD28500B5B9FE /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
-		845E145629DAD30000B5B9FE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		845E145629DAD30000B5B9FE /* SecondDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDemoView.swift; sourceTree = "<group>"; };
 		845E145829DAD34B00B5B9FE /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		845E145B29DAD68B00B5B9FE /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
+		84ED6E6729E3AE2000023A8C /* DiskHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiskHelper.h; sourceTree = "<group>"; };
+		84ED6E6829E3AE2000023A8C /* FirstDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDemoViewController.swift; sourceTree = "<group>"; };
+		84ED6E6929E3AE2000023A8C /* PHPickerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPickerDemo.swift; sourceTree = "<group>"; };
+		84ED6E6A29E3AE2000023A8C /* ALHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALHelper.m; sourceTree = "<group>"; };
+		84ED6E6B29E3AE2000023A8C /* Uitls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uitls.swift; sourceTree = "<group>"; };
+		84ED6E6C29E3AE2000023A8C /* ALHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALHelper.h; sourceTree = "<group>"; };
+		84ED6E6D29E3AE2000023A8C /* DiskHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiskHelper.m; sourceTree = "<group>"; };
+		84ED6E6E29E3AE2000023A8C /* DeviceInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
+		84ED6E7929E3AED300023A8C /* OCSwiftBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSwiftBridge.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +79,10 @@
 		845E143F29DAD22500B5B9FE /* DiveIntoPhotoLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				845E144029DAD22500B5B9FE /* AppDelegate.swift */,
-				845E144229DAD22500B5B9FE /* SceneDelegate.swift */,
-				845E144429DAD22500B5B9FE /* ViewController.swift */,
-				845E145629DAD30000B5B9FE /* HomeView.swift */,
+				84ED6E7829E3AEC100023A8C /* App */,
+				84ED6E7A29E3B00300023A8C /* SecondDemo */,
+				84ED6E6629E3AE2000023A8C /* FirstDemo */,
 				845E145A29DAD62B00B5B9FE /* Photos */,
-				845E145829DAD34B00B5B9FE /* PhotoViewModel.swift */,
 				845E144629DAD22500B5B9FE /* Main.storyboard */,
 				845E144929DAD22800B5B9FE /* Assets.xcassets */,
 				845E144B29DAD22800B5B9FE /* LaunchScreen.storyboard */,
@@ -85,6 +98,41 @@
 				845E145B29DAD68B00B5B9FE /* ImageFetcher.swift */,
 			);
 			path = Photos;
+			sourceTree = "<group>";
+		};
+		84ED6E6629E3AE2000023A8C /* FirstDemo */ = {
+			isa = PBXGroup;
+			children = (
+				84ED6E6A29E3AE2000023A8C /* ALHelper.m */,
+				84ED6E6C29E3AE2000023A8C /* ALHelper.h */,
+				84ED6E6729E3AE2000023A8C /* DiskHelper.h */,
+				84ED6E6D29E3AE2000023A8C /* DiskHelper.m */,
+				84ED6E6829E3AE2000023A8C /* FirstDemoViewController.swift */,
+				84ED6E6929E3AE2000023A8C /* PHPickerDemo.swift */,
+				84ED6E6B29E3AE2000023A8C /* Uitls.swift */,
+				84ED6E6E29E3AE2000023A8C /* DeviceInfo.swift */,
+			);
+			path = FirstDemo;
+			sourceTree = "<group>";
+		};
+		84ED6E7829E3AEC100023A8C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				845E144029DAD22500B5B9FE /* AppDelegate.swift */,
+				845E144229DAD22500B5B9FE /* SceneDelegate.swift */,
+				84ED6E7929E3AED300023A8C /* OCSwiftBridge.h */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		84ED6E7A29E3B00300023A8C /* SecondDemo */ = {
+			isa = PBXGroup;
+			children = (
+				845E144429DAD22500B5B9FE /* SecondDemoViewController.swift */,
+				845E145629DAD30000B5B9FE /* SecondDemoView.swift */,
+				845E145829DAD34B00B5B9FE /* PhotoViewModel.swift */,
+			);
+			path = SecondDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,12 +206,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845E144529DAD22500B5B9FE /* ViewController.swift in Sources */,
+				845E144529DAD22500B5B9FE /* SecondDemoViewController.swift in Sources */,
+				84ED6E7029E3AE2000023A8C /* PHPickerDemo.swift in Sources */,
+				84ED6E7429E3AE2000023A8C /* DeviceInfo.swift in Sources */,
+				84ED6E7329E3AE2000023A8C /* DiskHelper.m in Sources */,
 				845E145929DAD34B00B5B9FE /* PhotoViewModel.swift in Sources */,
+				84ED6E7229E3AE2000023A8C /* Uitls.swift in Sources */,
 				845E144129DAD22500B5B9FE /* AppDelegate.swift in Sources */,
+				84ED6E7129E3AE2000023A8C /* ALHelper.m in Sources */,
 				845E145529DAD28500B5B9FE /* PhotoManager.swift in Sources */,
+				84ED6E6F29E3AE2000023A8C /* FirstDemoViewController.swift in Sources */,
 				845E145C29DAD68B00B5B9FE /* ImageFetcher.swift in Sources */,
-				845E145729DAD30000B5B9FE /* HomeView.swift in Sources */,
+				845E145729DAD30000B5B9FE /* SecondDemoView.swift in Sources */,
 				845E144329DAD22500B5B9FE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.unknown.yet.DiveIntoPhotoLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = DiveIntoPhotoLibrary/App/OCSwiftBridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -359,6 +414,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.unknown.yet.DiveIntoPhotoLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = DiveIntoPhotoLibrary/App/OCSwiftBridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
